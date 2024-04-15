@@ -9,25 +9,28 @@ public class PreparedStatementEx {
     public static void main(String[] args) throws Exception {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter id: ");
-        int id = sc.nextInt();
-        System.out.println("Enter name: ");
+        System.out.println("Enter location: ");
+        String loc = sc.nextLine();
+
+        System.out.println("Enter Date: ");
         String name = sc.next();
-        System.out.println("Enter age: ");
-        int age = sc.nextInt();
-        String sql = "insert into emp values(?, ?, ?)";
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Acharya", "root", "Ad@8248600372");
+        sc.nextLine();
+        System.out.println("Enter Description: ");
+        String age = sc.nextLine();
+        String sql = "insert into Journal_Project values(?, ?, ?)";
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "Ad@8248600372");
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, id);
+        ps.setString(1, loc);
         ps.setString(2, name);
-        ps.setInt(3, age);
+        ps.setString(3, age);
         int i = ps.executeUpdate();
-        if(i > 0){
+        if (i > 0) {
             System.out.println("Inserted successfully");
-        }else{
+        } else {
             System.out.println("Inserted Unsuccessfully");
         }
 
         con.close();
     }
 }
+  
